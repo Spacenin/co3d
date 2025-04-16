@@ -89,14 +89,15 @@ def download_dataset(
     metadata_links = []
     data_links = []
     for category_name, urls in links.items():
-        for url in urls:
-            link_name = os.path.split(url)[-1]
-            if single_sequence_subset:
-                link_name = link_name.replace("_singlesequence", "")
-            if category_name.upper() == "METADATA":
-                metadata_links.append((link_name, url))
-            else:
-                data_links.append((category_name, link_name, url))
+        if category_name is "hydrant":
+            for url in urls:
+                link_name = os.path.split(url)[-1]
+                if single_sequence_subset:
+                    link_name = link_name.replace("_singlesequence", "")
+                if category_name.upper() == "METADATA":
+                    metadata_links.append((link_name, url))
+                else:
+                    data_links.append((category_name, link_name, url))
         
     if download_categories is not None:
         co3d_categories = set(l[0] for l in data_links)
