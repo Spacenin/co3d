@@ -89,7 +89,7 @@ def download_dataset(
     metadata_links = []
     data_links = []
     for category_name, urls in links.items():
-        if category_name is "hydrant":
+        if category_name == "hydrant":
             for url in urls:
                 link_name = os.path.split(url)[-1]
                 if single_sequence_subset:
